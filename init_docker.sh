@@ -11,7 +11,7 @@
 #                                                                              #
 # **************************************************************************** #
 
-# https://gist.github.com/alexandregv/9f19a72a7340db5c5ea903013fd844dc
+# https://github.com/alexandregv/42toolbox
 
 # Ensure USER variabe is set
 [ -z "${USER}" ] && export USER=`whoami`
