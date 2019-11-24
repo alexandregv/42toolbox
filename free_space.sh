@@ -48,3 +48,4 @@ df -h . | grep --color=always -E "Size|Used|Avail|Capacity|[0-9]*\.*[0-9]*Mi|[0-
 final_used_space=$(df -h $HOME | grep -v 'Filesystem' | awk '{ printf("%f", $3) }')
 freed_space=$(printf "%.1f" $(echo "$initial_used_space - $final_used_space" | bc))
 echo $'\033[0;34m'\\nFreed\ space:$'\033[0;39m'\ ${freed_space}Gi
+echo $'\033[0;34m'Pro\ tip:\ use $'\033[1;96m'GrandPerspective$'\033[0;34m'\ app\ to\ show\ a\ deep\ scan\ of\ your\ space.\ Available\ in\ the\ $'\033[1;96m'MSC$'\033[0;34m' \(Managed Software Center\).$'\033[0;39m'
