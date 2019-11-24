@@ -21,8 +21,8 @@
 # Config
 toolbox_path="$HOME/42toolbox"                       #=> 42toolbox path. See https://github.com/alexandregv/42toolbox
 bluetooth_device=""                                  #=> Bluetooth device name. Empty = skip bluetooth setup
-init_docker=true                                     #=> Init Docker for Mac? See https://gist.github.com/alexandregv/9f19a72a7340db5c5ea903013fd844dc
-init_docker_path="$toolbox_path/init_docker.sh"      #=> Location of init_docker.sh file. See https://gist.github.com/alexandregv/9f19a72a7340db5c5ea903013fd844dc
+init_docker=true                                     #=> Init Docker for Mac? See https://github.com/alexandregv/42toolbox/blob/master/init_docker.sh
+init_docker_path="$toolbox_path/init_docker.sh"      #=> Location of init_docker.sh file. See https://github.com/alexandregv/42toolbox/blob/master/init_docker.sh
 install_apps=true                                    #=> Install desired apps if they are missing?
 start_apps=true                                      #=> Start apps?
 update_brew=false                                    #=> Update Homebrew (itself)?
