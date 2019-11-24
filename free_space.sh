@@ -20,7 +20,7 @@ initial_used_space=$(df -h $HOME | grep -v 'Filesystem' | awk '{ printf("%f", $3
 initial_df=$(df -h . | grep --color=always -E "Size|Used|Avail|Capacity|[0-9]*\.*[0-9]*Mi|[0-9]*\.*[0-9]*Gi|[0-9]+\.*[0-9]+% |$")
 echo $'\033[0;34m'Current space:\\n$'\033[0;39m'"$initial_df"$'\033[0;39m'
 echo $'\033[0;34m'\\nHome folder:$'\033[0;39m'
-du -hd1 . 2>/dev/null | grep --color=always "[0-9]*\.*[0-9]*M\t\|[0-9]*\.*[0-9]*G\t\|$"
+du -hd1 . 2>/dev/null | sort -h | grep --color=always "[0-9]*\.*[0-9]*M\t\|[0-9]*\.*[0-9]*G\t\|$"
 echo
 
 function delete() {
