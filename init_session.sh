@@ -59,10 +59,6 @@ END
 	fi
 fi
 
-# Prepare Docker for Mac (configuring it to not fill your poor 5Gb disk space)
-# https://gist.github.com/alexandregv/9f19a72a7340db5c5ea903013fd844dc
-[ "$init_docker" = true ] && $init_docker_path
-
 # Check missing apps and open Managed Software Center (MSC) if needed
 declare -a apps_to_install=()
 if [ "$install_apps" = true ]; then
@@ -84,6 +80,10 @@ if [ "$install_apps" = true ]; then
 		#TODO: re-run check (loop) ?
 	fi
 fi
+
+# Prepare Docker for Mac (configuring it to not fill your poor 5Gb disk space)
+# https://gist.github.com/alexandregv/9f19a72a7340db5c5ea903013fd844dc
+[ "$init_docker" = true ] && $init_docker_path
 
 # Start apps
 if [ "$start_apps" = true ]; then
