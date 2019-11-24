@@ -31,6 +31,7 @@ clean_disk=true                                      #=> Clean disk (deletes ~/L
 start_RP42=true                                      #=> Start RP42 (Discord Rich Presence for 42)? See https://github.com/alexandregv/RP42
 RP42_path="/sgoinfre/goinfre/Perso/aguiot--/public/" #=> Location of RP42. You should not edit this unless you downloaded it manually. See https://github.com/alexandregv/RP42/blob/master/README.md#installation
 open_system_preferences=true                         #=> Open System Preferences at the end? You could need it to edit your keyboard/screen settings, etc.
+send_notification=true                               #=> Send a notification when job is done?
 
 # List your desired apps below, used by $install_apps and $start_apps.
 declare -a desired_apps=(
@@ -145,4 +146,9 @@ fi
 if [ "$open_system_preferences" = true ]; then
 	echo $'\033[0;34m'Opening $'\033[1;96m'System Preferences$'\033[0;34m'.$'\033[0;39m'
 	osascript -e 'tell application "System Preferences" to activate'
+fi
+
+# Open System Preferences
+if [ "$send_notification" = true ]; then
+	osascript -e 'display notification "Your session is ready !" with title "42toolbox/init_session.sh"'
 fi
