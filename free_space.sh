@@ -25,7 +25,8 @@ echo
 
 function delete() {
 	read -p $'\033[0;34m'Delete\ $'\033[1;96m'$1$'\033[0;34m'\ ?\ [y/$'\033[1;96m'N$'\033[0;34m']$'\033[0;39m'\  input
-	if [ $input = "y" ]; then
+	if [ -n "$input" ] && [ "$input" = "y" ]; then
+		echo $1
 		rm -rf $1
 	fi
 }
@@ -36,10 +37,9 @@ delete "./Library/Caches"
 
 # Brew cleanup
 read -p $'\033[0;34m'Cleanup\ Homebrew?\ \($'\033[1;96m'brew\ cleanup$'\033[0;34m'\)\ [y/$'\033[1;96m'N$'\033[0;34m']$'\033[0;39m'\  input
-if [ $input = "y" ]; then
+if [ -n "$input" ] && [ "$input" = "y" ]; then
 	brew cleanup ;:
 fi
-
 
 # Show before/after
 echo $'\033[0;34m'\\nSpace before:\\n$'\033[0;39m'"$initial_df"$'\033[0;34m'\\n\\nSpace after:$'\033[0;39m'

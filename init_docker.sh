@@ -46,7 +46,7 @@ pkill Docker
 # Create needed files in destination and make symlinks
 if [ -d $docker_destination ]; then
 	read -p $'\033[0;34m'Folder\ $'\033[1;96m'$docker_destination$'\033[0;34m'\ already\ exists,\ \d\o\ you\ want\ to\ reset\ it?\ [y/$'\033[1;96m'N$'\033[0;34m']$'\033[0;39m'\  input
-	if [ $input = "y" ]; then
+	if [ -n "$input" ] && [ "$input" = "y" ]; then
 		rm_and_link
 	fi
 else
