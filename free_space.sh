@@ -33,7 +33,7 @@ function delete() {
 # Delete heavy files/folders
 delete "./.cache/*"
 delete "./Library/Caches/*"
-delete "./Library/Containers/com.docker.docker"
+delete "./Library/Containers/com.docker.docker/*"
 delete "./Library/Containers/*"
 delete "./Downloads/*"
 
