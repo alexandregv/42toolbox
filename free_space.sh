@@ -31,8 +31,9 @@ function delete() {
 }
 
 # Delete heavy files/folders
-delete "./.cache"
-delete "./Library/Caches"
+delete "./.cache/*"
+delete "./Library/Caches/*"
+delete "./Library/Containers/*"
 delete "./Downloads/*"
 
 # Brew cleanup
