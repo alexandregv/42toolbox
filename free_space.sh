@@ -33,6 +33,7 @@ function delete() {
 # Delete heavy files/folders
 delete "./.cache"
 delete "./Library/Caches"
+delete "./Downloads/*"
 
 # Brew cleanup
 read -p $'\033[0;34m'Cleanup\ Homebrew?\ \($'\033[1;96m'brew\ cleanup$'\033[0;34m'\)\ [y/$'\033[1;96m'N$'\033[0;34m']$'\033[0;39m'\  input
