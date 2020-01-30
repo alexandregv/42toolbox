@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 # **************************************************************************** #
 #                                                                              #
 #                                                         :::      ::::::::    #
@@ -17,6 +17,13 @@
 [ -z "${USER}" ] && export USER=`whoami`
 
 ################################################################################
+
+# Colors
+blue=$'\033[0;34m'
+cyan=$'\033[1;96m'
+red=$'\033[0;91m'
+bold=$'\033[1;31m'
+reset=$'\033[0;39m'
 
 # Config
 toolbox_path="$HOME/42toolbox"                       #=> 42toolbox path. See https://github.com/alexandregv/42toolbox
@@ -46,7 +53,7 @@ declare -a desired_apps=(
 ################################################################################
 # Pair and connect a bluetooth device
 if [ -n "$bluetooth_device" ]; then
-	echo $'\033[0;34m'Setting up Bluetooth.$'\033[0;39m'
+	echo -e "${blue}Setting up Bluetooth.${reset}"
 	osascript <<'END'
 		tell application "System Preferences"
 			activate
@@ -69,15 +76,15 @@ if [ "$install_apps" = true ]; then
 		fi
 	done
 	if [ ${#apps_to_install[@]} -eq 0 ]; then
-		echo $'\033[0;34m'All your apps are already installed! Have a good code session \(unless you are a JavaScript guy\).$'\033[0;39m'
+		echo -e "${blue}All your apps are already installed! Have a good code session (unless you are a JavaScript guy).${reset}"
 	else
 		open -a "Managed Software Center"
-		echo $'\033[0;34m'Some of your apps are missing:$'\033[0;39m'
+		echo -e "${blue}Some of your apps are missing:${reset}"
 		for app_to_install in "${apps_to_install[@]}"; do
-			echo $'\033[0;34m'- $'\033[1;96m'$app_to_install$'\033[0;39m'
+			echo -e "${blue}- ${cyan}${app_to_install}${reset}"
 		done
-		echo $'\033[0;34m'------------------$'\033[0;39m'
-		read -p $'\033[0;34m'Please\ press\ $'\033[1;96m'ENTER$'\033[0;34m'/$'\033[1;96m'RETURN$'\033[0;34m'\ when\ you\ have\ installed\ all\ your\ desired\ apps.$'\033[0;39m'
+		echo -e "${blue}------------------${reset}"
+		read -p "${blue}Please press ${cyan}ENTER${blue}/${cyan}RETURN${blue} when you have installed all your desired apps.${reset}"
 		#TODO: re-run check (loop) ?
 	fi
 fi
@@ -91,7 +98,7 @@ if [ "$start_apps" = true ]; then
 	for app in "${desired_apps[@]}"; do
 		pgrep -q "$app"
 		if [ $? -ne 0 ]; then
-			echo $'\033[0;34m'Starting $'\033[1;96m'$app$'\033[0;39m'
+			echo -e "${blue}Starting ${cyan}${app}${reset}"
 			open -g -a "$app"
 		fi
 	done
@@ -99,19 +106,19 @@ fi
 
 # Update Homebrew
 if [ "$update_brew" = true ]; then
-	echo $'\033[0;34m'"Updating Homebrew."$'\033[0;39m'
+	echo -e "${blue}Updating Homebrew.${reset}"
 	brew update ;:
 fi
 
 # Upgrade Homebrew formulas
 if [ "$upgrade_brew_formulas" = true ]; then
-	echo $'\033[0;34m'"Updgrading Homebrew formulas."$'\033[0;39m'
+	echo -e "${blue}Updgrading Homebrew formulas.${reset}"
 	brew upgrade ;:
 fi
 
 # Clean disk
 if [ "$clean_disk" = true ]; then
-	echo $'\033[0;34m'"Cleaning up disk."$'\033[0;39m'
+	echo -e "${blue}Cleaning up disk.${reset}"
 	rm -rf ~/.cache ~/Library/Caches ;:
 	brew cleanup ;:
 fi
@@ -122,29 +129,29 @@ if [ "$start_RP42" = true ]; then
 		if [ -d "/Applications/Discord.app" ] || [ -d "~/Applications/Discord.app" ]; then
 			if ! grep -q "[D]iscord" <(ps aux); then
 				open -g -a Discord
-				echo $'\033[0;34m'Waiting for $'\033[1;96m'Discord$'\033[0;34m' to start...$'\033[0;39m'
+				echo -e "${blue}Waiting for ${cyan}Discord${blue} to start...${reset}"
 				sleep 5
 			fi
 			if [ -d "$RP42_path"/RP42.app ]; then
-				echo $'\033[0;34m'Starting $'\033[1;96m'RP42.app$'\033[0;34m'.$'\033[0;39m'
+				echo -e "${blue}Starting ${cyan}RP42.app${blue}.${reset}"
 				open -g $RP42_path/RP42.app
 			elif [ -f "$RP42_path"/RP42 ]; then
-				echo $'\033[0;34m'Starting $'\033[1;96m'RP42$'\033[0;34m'.$'\033[0;39m'
+				echo -e "${blue}Starting ${cyan}RP42${blue}.${reset}"
 				$RP42_path/RP42 &
 			else
-				echo $'\033[0;91m'Can not find $'\033[1;31m'RP42$'\033[0;91m'. Please report this bug to $'\033[1;31m'aguiot--$'\033[0;39m'
+				echo -e "${red}Can not find ${bold}RP42${red}. Please report this bug to ${bold}aguiot--${reset}"
 			fi
 		else
-			echo $'\033[1;31m'Discord$'\033[0;91m' is not installed. Please install it to use $'\033[1;31m'RP42$'\033[0;91m'. Skipping.$'\033[0;39m'
+			echo -e "${bold}Discord${red} is not installed. Please install it to use ${bold}RP42${red}. Skipping.${reset}"
 		fi
 	else
-		echo $'\033[1;96m'RP42$'\033[0;34m' is already started. Skipping.$'\033[0;39m'
+		echo -e "${cyan}RP42${blue} is already started. Skipping.${reset}"
 	fi
 fi
 
 # Open System Preferences
 if [ "$open_system_preferences" = true ]; then
-	echo $'\033[0;34m'Opening $'\033[1;96m'System Preferences$'\033[0;34m'.$'\033[0;39m'
+	echo -e "${blue}Opening ${cyan}System Preferences${blue}.${reset}"
 	osascript -e 'tell application "System Preferences" to activate'
 fi
 

@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 # **************************************************************************** #
 #                                                                              #
 #                                                         :::      ::::::::    #
@@ -23,14 +23,20 @@ docker_destination="/goinfre/$USER/docker" #=> Select docker destination (goinfr
 
 ################################################################################
 
+# Colors
+blue=$'\033[0;34m'
+cyan=$'\033[1;96m'
+reset=$'\033[0;39m'
+
 # Uninstall docker, docker-compose and docker-machine if they are installed with brew
 brew uninstall -f docker docker-compose docker-machine ;:
 
 # Check if Docker is installed with MSC and open MSC if not
 if [ ! -d "/Applications/Docker.app" ] && [ ! -d "~/Applications/Docker.app" ]; then
-	echo $'\033[0;34m'Please install $'\033[1;96m'Docker for Mac $'\033[0;34m'from the MSC \(Managed Software Center\)$'\033[0;39m'
+	echo -e "${blue}Please install ${cyan}Docker for Mac ${blue}from the MSC (Managed Software Center)${reset}"
 	open -a "Managed Software Center"
-	read -p $'\033[0;34m'Press\ RETURN\ when\ you\ have\ successfully\ installed\ $'\033[1;96m'Docker\ for\ Mac$'\033[0;34m'...$'\033[0;39m'
+	read -n1 -p "${blue}Press RETURN when you have successfully installed ${cyan}Docker for Mac${blue}...${reset}"
+	echo ""
 fi
 
 function rm_and_link() {
@@ -45,7 +51,8 @@ pkill Docker
 
 # Create needed files in destination and make symlinks
 if [ -d $docker_destination ]; then
-	read -p $'\033[0;34m'Folder\ $'\033[1;96m'$docker_destination$'\033[0;34m'\ already\ exists,\ \d\o\ you\ want\ to\ reset\ it?\ [y/$'\033[1;96m'N$'\033[0;34m']$'\033[0;39m'\  input
+	read -n1 -p "${blue}Folder ${cyan}$docker_destination${blue} already exists, do you want to reset it? [y/${cyan}N${blue}]${reset} " input
+	echo ""
 	if [ -n "$input" ] && [ "$input" = "y" ]; then
 		rm_and_link
 	fi
@@ -55,4 +62,4 @@ fi
 
 # Start Docker for Mac
 open -g -a Docker
-echo $'\033[1;96m'Docker$'\033[0;34m' is now starting\! Please report any bug to: $'\033[1m'aguiot--$'\033[0;39m'
+echo -e "${cyan}Docker${blue} is now starting! Please report any bug to: ${cyan}aguiot--${reset}"

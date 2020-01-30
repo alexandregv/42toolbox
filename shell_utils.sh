@@ -6,7 +6,7 @@
 #    By: aguiot-- <aguiot--@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/11/29 17:03:39 by aguiot--          #+#    #+#              #
-#    Updated: 2019/11/29 18:46:38 by aguiot--         ###   ########.fr        #
+#    Updated: 2020/01/30 18:59:24 by aguiot--         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -33,7 +33,7 @@ function valgrind_macos ()
 		if [[ $i == ./* ]]; then
 			cmd=$(nm -an $i | grep asan)
 			if [[ $? == 0 ]]; then
-				echo $'\033[0;91m'You are trying to run valgrind but you compiled with -fsanitize. $'\033[1;31m'NEVER do this on macOS$'\033[0;91m', this will crash you computer.$'\033[0;39m'
+				echo -e "\033[0;91mYou are trying to run valgrind but you compiled with -fsanitize. \033[1;31mNEVER do this on macOS\033[0;91m, this will crash you computer.\033[0;39m"
 			else
 				command valgrind $*
 			fi
