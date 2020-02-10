@@ -28,6 +28,16 @@ blue=$'\033[0;34m'
 cyan=$'\033[1;96m'
 reset=$'\033[0;39m'
 
+# Check for update (comparing headers only to avoid false positive if the user changed config vars)
+if [[ $(head -n 12 init_docker.sh | shasum) != $(head -n 12 <(curl -s https://raw.githubusercontent.com/alexandregv/42toolbox/master/init_docker.sh) | shasum) ]]; then
+	echo -e "${blue}A ${cyan}new version${blue} of this script is available. Download it here: ${cyan}https://github.com/alexandregv/42toolbox${reset}"
+	read -n1 -p "${blue}Continue without updating (not recommended)? [y/${cyan}N${blue}]${reset} " input
+	echo ""
+	if [ ! -n "$input" ] || [ "$input" != "y" ]; then
+		exit
+	fi
+fi
+
 # Uninstall docker, docker-compose and docker-machine if they are installed with brew
 brew uninstall -f docker docker-compose docker-machine ;:
 
