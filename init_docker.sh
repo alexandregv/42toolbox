@@ -7,7 +7,7 @@
 #    By: aguiot-- <aguiot--@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/11/18 08:17:08 by aguiot--          #+#    #+#              #
-#    Updated: 2020/02/10 11:19:18 by aguiot--         ###   ########.fr        #
+#    Updated: 2020/02/10 12:34:50 by aguiot--         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,8 +29,8 @@ cyan=$'\033[1;96m'
 reset=$'\033[0;39m'
 
 # Check for update (comparing headers only to avoid false positive if the user changed config vars)
-if [[ $(head -n 12 init_docker.sh | shasum) != $(head -n 12 <(curl -s https://raw.githubusercontent.com/alexandregv/42toolbox/master/init_docker.sh) | shasum) ]]; then
-	echo -e "${blue}A ${cyan}new version${blue} of this script is available. Download it here: ${cyan}https://github.com/alexandregv/42toolbox${reset}"
+if [[ $(head -n 12 "${BASH_SOURCE[0]}" | shasum) != $(head -n 12 <(curl -s https://raw.githubusercontent.com/alexandregv/42toolbox/master/init_docker.sh) | shasum) ]]; then
+	echo -e "${blue}A ${cyan}new version${blue} of ${cyan}init_docker.sh${blue} is available. Download it here: ${cyan}https://github.com/alexandregv/42toolbox${reset}"
 	read -n1 -p "${blue}Continue without updating (not recommended)? [y/${cyan}N${blue}]${reset} " input
 	echo ""
 	if [ ! -n "$input" ] || [ "$input" != "y" ]; then
