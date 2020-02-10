@@ -7,7 +7,7 @@
 #    By: aguiot-- <aguiot--@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/11/18 08:17:08 by aguiot--          #+#    #+#              #
-#    Updated: 2019/11/20 10:24:38 by aguiot--         ###   ########.fr        #
+#    Updated: 2020/02/10 11:19:18 by aguiot--         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -39,27 +39,35 @@ if [ ! -d "/Applications/Docker.app" ] && [ ! -d "~/Applications/Docker.app" ]; 
 	echo ""
 fi
 
-function rm_and_link() {
-	rm -rf ~/Library/Containers/com.docker.docker ~/.docker
-	mkdir -p $docker_destination/{com.docker.docker,.docker}
-	ln -sf $docker_destination/com.docker.docker ~/Library/Containers/com.docker.docker
-	ln -sf $docker_destination/.docker ~/.docker
-}
-
-# Kill Docker if started
+# Kill Docker if started, so it doesn't create files during the process
 pkill Docker
 
-# Create needed files in destination and make symlinks
+# Ask to reset destination if it already exists
 if [ -d $docker_destination ]; then
 	read -n1 -p "${blue}Folder ${cyan}$docker_destination${blue} already exists, do you want to reset it? [y/${cyan}N${blue}]${reset} " input
 	echo ""
 	if [ -n "$input" ] && [ "$input" = "y" ]; then
-		rm_and_link
+		rm -rf $docker_destination/{com.docker.{docker,helper},.docker} &>/dev/null ;:
 	fi
-else
-	rm_and_link
 fi
+
+# Unlinks all symlinks, if they are
+unlink ~/Library/Containers/com.docker.docker &>/dev/null ;:
+unlink ~/Library/Containers/com.docker.helper &>/dev/null ;:
+unlink ~/.docker &>/dev/null ;:
+
+# Delete directories if they were not symlinks
+rm -rf ~/Library/Containers/com.docker.{docker,helper} ~/.docker &>/dev/null ;:
+
+# Create destination directories in case they don't already exist
+mkdir -p $docker_destination/{com.docker.{docker,helper},.docker}
+
+# Make symlinks
+ln -sf $docker_destination/com.docker.docker ~/Library/Containers/com.docker.docker
+ln -sf $docker_destination/com.docker.helper ~/Library/Containers/com.docker.helper
+ln -sf $docker_destination/.docker ~/.docker
 
 # Start Docker for Mac
 open -g -a Docker
+
 echo -e "${cyan}Docker${blue} is now starting! Please report any bug to: ${cyan}aguiot--${reset}"
