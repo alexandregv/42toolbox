@@ -3,7 +3,10 @@ A bunch of scripts to make your life better at @42School
 
 ## Installation
 Just `git clone https://github.com/alexandregv/42toolbox.git ~/42toolbox`.  
-If you use [shell_utils.sh](#shell_utils), you probably want to source it inside your .zshrc/.bashrc/etc: `echo "source ~/42toolbox/shell_utils.sh" >> ~/.zshrc`.  
+
+If you use [shell_utils.sh](#shell_utils), you probably want to source it inside your .zshrc/.bashrc/etc:  
+`echo "source ~/42toolbox/shell_utils.sh" >> ~/.zshrc`.  
+
 You can also use the scripts of your choice without cloning the repository. You will have to edit `toolbox_path` in [init_session.sh](https://github.com/alexandregv/42toolbox/blob/master/init_session.sh#L22) if you use it.
 
 ### init_session
