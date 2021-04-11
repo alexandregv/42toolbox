@@ -6,7 +6,7 @@
 #    By: aguiot-- <aguiot--@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/11/29 17:03:39 by aguiot--          #+#    #+#              #
-#    Updated: 2020/01/30 18:59:24 by aguiot--         ###   ########.fr        #
+#    Updated: 2021/04/11 16:15:38 by aguiot--         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,7 @@
 # Valgrind in docker with custom compilation command
 # Usage: valgrind_docker_custom "make re" "./ft_ls -l /tmp ~"
 function valgrind_docker_custom () {
-	docker run -it --rm --workdir $HOME --entrypoint sh -v $PWD:$HOME mooreryan/valgrind -c "$1 && valgrind --leak-check=full --track-origins=yes --show-leak-kinds=all --show-reachable=yes $2"
+	docker run -it --rm --workdir "$HOME" --entrypoint sh -v "$PWD:$HOME" mooreryan/valgrind -c "$1 && valgrind --leak-check=full --track-origins=yes --show-leak-kinds=all --show-reachable=yes $2"
 }
 
 # Valgrind in docker with default make
