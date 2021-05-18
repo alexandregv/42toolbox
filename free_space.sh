@@ -42,6 +42,7 @@ delete "./Library/Caches/*"
 delete "./Library/Containers/com.docker.docker/*"
 delete "./Library/Containers/*"
 delete "./Downloads/*"
+delete "./.Trash/*"
 
 # Brew cleanup
 read -n1 -p "${blue}Cleanup Homebrew? (${cyan}brew cleanup${blue}) [y/${cyan}N${blue}]${reset} " input
