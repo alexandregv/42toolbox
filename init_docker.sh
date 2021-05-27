@@ -19,7 +19,16 @@
 ################################################################################
 
 # Config
-docker_destination="/goinfre/$USER/docker" #=> Select docker destination (goinfre is a good choice)
+#=> Select goinfre as docker destination. A good default choice
+if [ $(sw_vers -productVersion | cut -d "." -f 2) -eq 15 ]
+then
+        docker_destination="/Volumes/Storage/goinfre/$USER/docker" #=> On Catalina, goinfre changed position
+else
+        docker_destination="/goinfre/$USER/docker" #=> Former position on older Macs
+fi
+
+# Uncomment following line to override docker_destination
+# docker_destination="/goinfre/$USER/docker"
 
 ################################################################################
 
