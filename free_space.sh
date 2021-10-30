@@ -7,7 +7,7 @@
 #    By: aguiot-- <aguiot--@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/11/24 12:13:59 by aguiot--          #+#    #+#              #
-#    Updated: 2019/11/24 13:25:28 by aguiot--         ###   ########.fr        #
+#    Updated: 2021/10/30 21:13:12 by aguiot--         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,9 +17,9 @@ cyan=$'\033[1;96m'
 reset=$'\033[0;39m'
 
 # Avoid boring prefix in du/df/etc
-cd $HOME
+cd "$HOME"
 
-initial_used_space=$(df -h $HOME | grep -v 'Filesystem' | awk '{ printf("%f", $3) }')
+initial_used_space=$(df -h "$HOME" | grep -v 'Filesystem' | awk '{ printf("%f", $3) }')
 
 # Show current used space
 initial_df=$(df -h . | grep --color=always -E "Size|Used|Avail|Capacity|[0-9]*\.*[0-9]*Mi|[0-9]*\.*[0-9]*Gi|[0-9]+\.*[0-9]+% |$")
@@ -32,7 +32,7 @@ function delete() {
 	read -n1 -p "${blue}Delete ${cyan}$1${blue} ? [y/${cyan}N${blue}]${reset} " input
 	echo ""
 	if [ -n "$input" ] && [ "$input" = "y" ]; then
-		rm -rf $1
+		rm -rf "$1"
 	fi
 }
 
@@ -55,7 +55,7 @@ fi
 echo -e "${blue}\nSpace before:\n${reset}${initial_df}${blue}\n\nSpace after:${reset}"
 df -h . | grep --color=always -E "Size|Used|Avail|Capacity|[0-9]*\.*[0-9]*Mi|[0-9]*\.*[0-9]*Gi|[0-9]+\.*[0-9]+% |$"
 
-final_used_space=$(df -h $HOME | grep -v 'Filesystem' | awk '{ printf("%f", $3) }')
+final_used_space=$(df -h "$HOME" | grep -v 'Filesystem' | awk '{ printf("%f", $3) }')
 freed_space=$(printf "%.1f" $(echo -e "${initial_used_space} - ${final_used_space}" | bc))
 echo -e "${blue}\nFreed space: ${cyan}${freed_space}Gi${reset}"
 echo -e "${blue}Pro tip: use ${cyan}GrandPerspective${blue} (GUI, available in the MSC) or ${cyan}ncdu${blue} (terminal, available with brew) to show a deep scan of your space.${reset}"
