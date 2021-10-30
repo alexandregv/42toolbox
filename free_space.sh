@@ -7,7 +7,7 @@
 #    By: aguiot-- <aguiot--@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/11/24 12:13:59 by aguiot--          #+#    #+#              #
-#    Updated: 2021/10/30 21:13:12 by aguiot--         ###   ########.fr        #
+#    Updated: 2021/10/30 21:15:38 by aguiot--         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -41,6 +41,7 @@ delete "./.cache/*"
 delete "./Library/Caches/*"
 delete "./Library/Containers/com.docker.docker/*"
 delete "./Library/Containers/*"
+delete "./Library/Application Support/Code/User/*"
 delete "./Downloads/*"
 delete "./.Trash/*"
 
