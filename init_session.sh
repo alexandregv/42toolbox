@@ -32,6 +32,7 @@ init_docker=true                                     #=> Init Docker for Mac? Se
 init_docker_path="$toolbox_path/init_docker.sh"      #=> Location of init_docker.sh file. See https://github.com/alexandregv/42toolbox/blob/master/init_docker.sh
 install_apps=true                                    #=> Install desired apps if they are missing?
 start_apps=true                                      #=> Start apps?
+install_brew=true                                    #=> Install Homebrew?
 update_brew=false                                    #=> Update Homebrew (itself)?
 upgrade_brew_formulas=true                           #=> Upgrade Homebrew formulas (packages)?
 clean_disk=true                                      #=> Clean disk (deletes ~/Library/Caches, does a brew cleanup, etc)?
@@ -102,6 +103,18 @@ if [ "$start_apps" = true ]; then
 			open -g -a "$app"
 		fi
 	done
+fi
+
+# Install Homebrew
+if [ "$install_brew" = true ]; then
+	if [ ! -x "$(command -v brew)" ]; then
+		echo -e "${blue}Installing Homebrew.${reset}"
+		git clone --depth=1 https://github.com/Homebrew/brew ~/.brew/
+		export PATH="$HOME/.brew/bin:$PATH"
+		echo 'export PATH="$HOME/.brew/bin:$PATH"' >> ~/.zshrc
+	else
+		echo -e "${blue}Homebrew is already installed. If you want to reinstall it, please run \`rm -rf ~/.brew/\` before.${reset}"
+	fi
 fi
 
 # Update Homebrew
