@@ -28,6 +28,8 @@ reset=$'\033[0;39m'
 # Config
 toolbox_path="$HOME/42toolbox"                       #=> 42toolbox path. See https://github.com/alexandregv/42toolbox
 bluetooth_device=""                                  #=> Bluetooth device name. Empty = skip bluetooth setup
+init_ssh=true                                        #=> Init SSH? Creates SSH key if needed and shows how to add it on the intra
+init_ssh_path="$toolbox_path/init_ssh.sh"            #=> Location of init_ssh.sh file. See https://github.com/alexandregv/42toolbox/blob/master/init_ssh.sh
 init_docker=true                                     #=> Init Docker for Mac? See https://github.com/alexandregv/42toolbox/blob/master/init_docker.sh
 init_docker_path="$toolbox_path/init_docker.sh"      #=> Location of init_docker.sh file. See https://github.com/alexandregv/42toolbox/blob/master/init_docker.sh
 install_apps=true                                    #=> Install desired apps if they are missing?
@@ -52,6 +54,10 @@ declare -a desired_apps=(
 )
 
 ################################################################################
+# Create SSH key if needed and show how to add it on the intra
+# See init_ssh.sh
+[ "$init_ssh" = true ] && $init_ssh_path
+
 # Pair and connect a bluetooth device
 if [ -n "$bluetooth_device" ]; then
 	echo -e "${blue}Setting up Bluetooth.${reset}"

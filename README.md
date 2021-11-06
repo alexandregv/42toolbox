@@ -12,12 +12,17 @@ You can also use the scripts of your choice without cloning the repository. You 
 ### init_session
 A script to init your session at 42 when you log in. It can:
 - Connect your bluetooth device
+- Init SSH (see [init_ssh](#init_ssh))
 - Init docker (see [init_docker](#init_docker))
 - Check if all your apps are installed and start them
 - Update brew and its formulas
 - Clean your disk (also check [free_space](#free_space))
 - Start [RP42](https://github.com/alexandregv/RP42)
 - Open System Preferences (You could need it to edit your keyboard/screen settings, etc)
+
+### init_ssh
+A script to create an SSH key pair if needed, then see how to add it on the intra.  
+It can copy the public key to your clipboard if supported (macOS or Linux with xsel/xclip) and open the intra settings page automatically.
 
 ### init_docker
 A script to init Docker for Mac at 42.  
