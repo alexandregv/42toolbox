@@ -37,13 +37,17 @@ function delete() {
 }
 
 # Delete heavy files/folders
+delete "./Downloads/*"
+delete "./.Trash/*"
 delete "./.cache/*"
 delete "./Library/Caches/*"
 delete "./Library/Containers/com.docker.docker/*"
 delete "./Library/Containers/*"
 delete "./Library/Application Support/Code/User/*"
-delete "./Downloads/*"
-delete "./.Trash/*"
+delete "./Library/Application Support/Code/CachedData/*"
+delete "./Library/Application Support/Slack/Service Worker/CacheStorage/*"
+delete "./Library/Application Support/discord/Cache/*"
+delete "./Library/Developer/CoreSimulator/*"
 
 # Brew cleanup
 read -n1 -p "${blue}Cleanup Homebrew? (${cyan}brew cleanup${blue}) [y/${cyan}N${blue}]${reset} " input
