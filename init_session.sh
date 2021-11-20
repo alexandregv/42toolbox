@@ -42,7 +42,7 @@ start_RP42=true                                      #=> Start RP42 (Discord Ric
 RP42_path="/sgoinfre/goinfre/Perso/aguiot--/public/" #=> Location of RP42. You should not edit this unless you downloaded it manually. See https://github.com/alexandregv/RP42/blob/master/README.md#installation
 open_system_preferences=true                         #=> Open System Preferences at the end? You could need it to edit your keyboard/screen settings, etc.
 send_notification=true                               #=> Send a notification when job is done?
-
+dark_mode=true										 #=> Activate dark mode
 # List your desired apps below, used by $install_apps and $start_apps.
 declare -a desired_apps=(
 	"Discord"
@@ -95,6 +95,9 @@ if [ "$install_apps" = true ]; then
 		#TODO: re-run check (loop) ?
 	fi
 fi
+
+# Activate dark mode
+[ "$dark_mode" = true ] && osascript -e 'tell app "System Events" to tell appearance preferences to set dark mode to true'
 
 # Prepare Docker for Mac (configuring it to not fill your poor 5Gb disk space)
 # https://gist.github.com/alexandregv/9f19a72a7340db5c5ea903013fd844dc
