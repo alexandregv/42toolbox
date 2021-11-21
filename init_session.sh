@@ -42,7 +42,7 @@ start_RP42=true                                      #=> Start RP42 (Discord Ric
 RP42_path="/sgoinfre/goinfre/Perso/aguiot--/public/" #=> Location of RP42. You should not edit this unless you downloaded it manually. See https://github.com/alexandregv/RP42/blob/master/README.md#installation
 open_system_preferences=true                         #=> Open System Preferences at the end? You could need it to edit your keyboard/screen settings, etc.
 send_notification=true                               #=> Send a notification when job is done?
-dark_mode=true										 #=> Activate dark mode
+dark_mode=true                                       #=> Activate dark mode
 # List your desired apps below, used by $install_apps and $start_apps.
 declare -a desired_apps=(
 	"Discord"
