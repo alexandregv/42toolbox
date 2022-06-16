@@ -29,6 +29,7 @@ function valgrind_docker_make () {
 # You must use "./" to specify executable file
 function valgrind_macos ()
 {
+	local i
 	for i in "$@"; do
 		if [[ $i == ./* ]]; then
 			cmd=$(nm -an $i | grep asan)
