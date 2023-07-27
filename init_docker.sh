@@ -29,7 +29,7 @@ cyan=$'\033[1;96m'
 reset=$'\033[0;39m'
 
 # Uninstall docker, docker-compose and docker-machine if they are installed with brew
-brew uninstall -f docker docker-compose docker-machine &>/dev/null ;:
+brew uninstall -f docker-compose docker-machine &>/dev/null ;:
 
 # Check if Docker is installed with MSC and open MSC if not
 if [ ! -d "/Applications/Docker.app" ] && [ ! -d "~/Applications/Docker.app" ]; then
