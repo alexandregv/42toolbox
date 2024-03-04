@@ -1,5 +1,8 @@
 # 42toolbox
-A bunch of scripts to make your life better at @42School
+A bunch of scripts to make your life better at @42School.
+
+⚠️ This has been devloped when 42Paris was still using macOS, which is not the case anymore. Some scripts will only work on macOS and not Linux, or will be useless on Linux.  
+For example, `init_docker.sh` is useless on Linux because it's configured by default and `free_space.sh` uses macOS directories.
 
 ## Installation
 Just `git clone https://github.com/alexandregv/42toolbox.git ~/42toolbox`.  
