@@ -41,3 +41,5 @@ It creates nice aliases and functions:
 - valgrind_macos : a function to protect valgrind and fsanitize
 - valgrind_docker_{make,custom} : two functions to run valgrind (and your program) inside docker. No more false positive with valgrind on macOS
 
+## Stargazers over time
+[![Stargazers over time](https://starchart.cc/alexandregv/42toolbox.svg?variant=adaptive)](https://starchart.cc/alexandregv/42toolbox)
